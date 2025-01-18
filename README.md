@@ -6,7 +6,7 @@ Redsocks is a proxy tunneling extension. However, I found a very rare tutorial a
 # One command run installation
 Run the following command to install Redsocks automatically:
 ```
-cd /tmp && wget https://github.com/emonbhuiyan/Redsocks-OpenWRT/raw/main/install.sh && chmod +x install.sh && clear && sh install.sh && rm install.sh && cd / && clear
+cd /tmp && wget https://github.com/hptee001/Redsocks-OpenWRT/raw/main/install.sh && chmod +x install.sh && clear && sh install.sh && rm install.sh && cd / && clear
 ```
 Just run it and wait for completion. And enjoy. [Click here to learn step by step manual installation](#manual-installation-step-by-step)
 
@@ -59,7 +59,7 @@ opkg install iptables iptables-mod-nat-extra redsocks
 
 ### Step 3: Then run this line
 ```
-service redsocks stop && mv /etc/redsocks.conf /etc/redsocks.conf.bkp && cd /etc && wget https://github.com/emonbhuiyan/Redsocks-OpenWRT/raw/main/redsocks.conf && mv /etc/init.d/redsocks /etc/init.d/redsocks.bkp && cd /etc/init.d && wget https://github.com/emonbhuiyan/Redsocks-OpenWRT/raw/main/redsocks && chmod +x /etc/init.d/redsocks
+service redsocks stop && mv /etc/redsocks.conf /etc/redsocks.conf.bkp && cd /etc && wget https://github.com/hptee001/Redsocks-OpenWRT/raw/main/redsocks.conf && mv /etc/init.d/redsocks /etc/init.d/redsocks.bkp && cd /etc/init.d && wget https://github.com/hptee001/Redsocks-OpenWRT/raw/main/redsocks && chmod +x /etc/init.d/redsocks
 ```
 [Click here to install with one command run](#one-command-run-installation)
 
