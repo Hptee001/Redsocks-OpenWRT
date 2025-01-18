@@ -4,6 +4,8 @@
 START=90
 INTERFACE=br-lan
 PORT=1181
+PORT_182=1182
+PORT_183=1183
 
 # check if configuration exists
 [ -e "/etc/redsocks.conf" ] || exit 0
@@ -22,14 +24,18 @@ iptable_start() {
     iptables -t nat -A REDSOCKS -d 192.168.0.0/16 -j RETURN
     iptables -t nat -A REDSOCKS -d 224.0.0.0/4 -j RETURN
     iptables -t nat -A REDSOCKS -d 240.0.0.0/4 -j RETURN
-    iptables -t nat -A REDSOCKS -d 192.168.1.181 -p tcp -j REDIRECT --to-port 1181
-    iptables -t nat -A REDSOCKS -d 192.168.1.182 -p tcp -j REDIRECT --to-port 1182
-    iptables -t nat -A REDSOCKS -d 192.168.1.183 -p tcp -j REDIRECT --to-port 1183
-    iptables -t nat -A REDSOCKS -d 192.168.1.184 -p tcp -j REDIRECT --to-port 1184
+
+    iptables -t nat -A REDSOCKS -s 192.168.1.182 -p tcp -j REDIRECT --to-ports ${PORT_182}
+    
+    iptables -t nat -A REDSOCKS -s 192.168.1.183 -p tcp -j REDIRECT --to-ports ${PORT_183}
+
+    iptables -t nat -A REDSOCKS -p tcp -j REDIRECT --to-ports ${PORT}
 
     iptables -t nat -A PREROUTING -i ${INTERFACE} -p tcp -j REDSOCKS
 
     iptables -A INPUT -i br-lan -p tcp --dport ${PORT} -j ACCEPT
+    iptables -A INPUT -i br-lan -p tcp --dport ${PORT_182} -j ACCEPT
+    iptables -A INPUT -i br-lan -p tcp --dport ${PORT_183} -j ACCEPT
 
     /bin/echo " done"
 }
