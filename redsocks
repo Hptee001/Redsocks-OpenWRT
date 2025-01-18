@@ -27,8 +27,6 @@ iptable_start() {
     iptables -t nat -A REDSOCKS -d 192.168.1.183 -p tcp -j REDIRECT --to-port 1183
     iptables -t nat -A REDSOCKS -d 192.168.1.184 -p tcp -j REDIRECT --to-port 1184
 
-    iptables -t nat -A REDSOCKS -p tcp -j REDIRECT --to-ports ${PORT}
-
     iptables -t nat -A PREROUTING -i ${INTERFACE} -p tcp -j REDSOCKS
 
     iptables -A INPUT -i br-lan -p tcp --dport ${PORT} -j ACCEPT
