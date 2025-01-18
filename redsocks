@@ -22,6 +22,7 @@ iptable_start() {
     iptables -t nat -A REDSOCKS -d 192.168.0.0/16 -j RETURN
     iptables -t nat -A REDSOCKS -d 224.0.0.0/4 -j RETURN
     iptables -t nat -A REDSOCKS -d 240.0.0.0/4 -j RETURN
+    iptables -t nat -A REDSOCKS -d 192.168.1.181 -p tcp -j REDIRECT --to-port 1181
 
     iptables -t nat -A REDSOCKS -p tcp -j REDIRECT --to-ports ${PORT}
 
